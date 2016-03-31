@@ -3,6 +3,7 @@
 if [ $(uname) == Darwin ]; then
     PGFLAG=""
     export LDFLAGS="-headerpad_max_install_names"
+    brew remove --force $(brew list)
 else
     PGFLAG="--with-pg=$PREFIX/bin/pg_config"
 fi
@@ -14,12 +15,17 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-xerces=$PREFIX \
             --with-netcdf=$PREFIX \
             --with-geos=$PREFIX/bin/geos-config \
-            --with-kea=$PREFIX/bin/kea-config \
             --with-static-proj4=$PREFIX \
             --with-openjpeg=$PREFIX \
+            --with-libjson-c=$PREFIX \
+            --with-expat=$PREFIX \
+            --with-freexl=$PREFIX \
+            --with-liblzma=$PREFIX \
+            --with-spatialite=$PREFIX \
             --disable-rpath \
             --without-pam \
             --with-python \
+            --enable-debug \
             $PGFLAG
 
 make
