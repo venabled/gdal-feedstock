@@ -1,11 +1,10 @@
 #!/bin/bash
 
 if [ $(uname) == Darwin ]; then
-    PGFLAG=""
     export LDFLAGS="-headerpad_max_install_names"
-    brew remove --force $(brew list)
+    OPTS="--with-xml2=$PREFIX"
 else
-    PGFLAG="--with-pg=$PREFIX/bin/pg_config"
+    OPTS="--with-pg=$PREFIX/bin/pg_config"
 fi
 
 CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
@@ -22,6 +21,10 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-freexl=$PREFIX \
             --with-liblzma=$PREFIX \
             --with-spatialite=$PREFIX \
+            --with-jpeg=$PREFIX \
+            --with-libtiff=$PREFIX \
+            --with-png=$PREFIX \
+            --with-libz=$PREFIX \
             --disable-rpath \
             --without-pam \
             --with-python \
@@ -30,15 +33,6 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
 
 make
 make install
-
-if [ $(uname) == Darwin ]; then
-    # Copy TIFF and GeoTIFF Headers to build against internal libraries.
-    mkdir -p $PREFIX/include/gdal/frmts/gtiff/libgeotiff
-    cp frmts/gtiff/libgeotiff/*.h $PREFIX/include/gdal/frmts/gtiff/libgeotiff
-    cp frmts/gtiff/libgeotiff/*.inc $PREFIX/include/gdal/frmts/gtiff/libgeotiff
-    mkdir -p $PREFIX/include/gdal/frmts/gtiff/libtiff
-    cp frmts/gtiff/libtiff/*.h $PREFIX/include/gdal/frmts/gtiff/libtiff
-fi
 
 # Make sure GDAL_DATA and set and still present in the package.
 # https://github.com/conda/conda-recipes/pull/267
