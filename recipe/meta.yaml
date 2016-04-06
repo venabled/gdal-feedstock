@@ -15,8 +15,7 @@ source:
         - install_scripts.patch
 
 build:
-    number: 3
-    skip: True  # [win and py35]
+    number: 4
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -33,22 +32,21 @@ requirements:
         - proj.4
         - xerces-c
         - libnetcdf
-        - kealib
         - krb5
         - libtiff
         - libpng
+        - openjpeg
+        - curl
+        - expat
         - zlib  # [not win]
         - jpeg  # [not win]
         - postgresql  # [linux]
-        - openjpeg  # [not win]
-        - curl  # [not win]
+        - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - jasper  # [not win]
         - freexl  # [not win]
-        - expat
-        - libxml2  # [linux]
-        - libspatialite  # [linux]
+        - libxml2  # [not win]
+        - libspatialite  # [not win]
     run:
         - python
         - numpy x.x
@@ -58,22 +56,21 @@ requirements:
         - proj.4
         - xerces-c
         - libnetcdf
-        - kealib
         - krb5
         - libtiff
         - libpng
+        - openjpeg
+        - curl
+        - expat
         - zlib  # [not win]
         - jpeg  # [not win]
         - postgresql  # [linux]
-        - openjpeg  # [not win]
-        - curl  # [not win]
+        - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
-        - jasper  # [not win]
         - freexl  # [not win]
-        - expat
-        - libxml2  # [linux]
-        - libspatialite  # [linux]
+        - libxml2  # [not win]
+        - libspatialite  # [not win]
 
 test:
     files:
@@ -95,15 +92,14 @@ test:
         - osgeo._ogr
         - osgeo._osr
     commands:
-        - ogrinfo sites.shp  # [not win]
-        - ogrinfo.exe sites.shp  # [win]
-        - gdal_grid --version  # [not win]
-        - gdal_rasterize --version  # [not win]
-        - gdal_translate --version  # [not win]
-        - gdaladdo --version  # [not win]
-        - gdalenhance --version  # [not win]
-        - gdalwarp --version  # [not win]
-        - gdalinfo --formats  # [not win]
+        - ogrinfo sites.shp
+        - gdal_grid --version
+        - gdal_rasterize --version
+        - gdal_translate --version
+        - gdaladdo --version
+        - gdalenhance --version
+        - gdalwarp --version
+        - gdalinfo --formats
         - conda inspect linkages -n _test gdal  # [linux]
 
 about:
