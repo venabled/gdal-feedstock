@@ -16,11 +16,6 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-geos=$PREFIX/bin/geos-config \
             --with-static-proj4=$PREFIX \
             --with-openjpeg=$PREFIX \
-            --with-libjson-c=$PREFIX \
-            --with-expat=$PREFIX \
-            --with-freexl=$PREFIX \
-            --with-liblzma=$PREFIX \
-            --with-spatialite=$PREFIX \
             --with-jpeg=$PREFIX \
             --with-libtiff=$PREFIX \
             --with-png=$PREFIX \
@@ -28,8 +23,14 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --disable-rpath \
             --without-pam \
             --with-python \
+            --with-libjson-c=$PREFIX \
+            --with-expat=$PREFIX \
+            --with-freexl=$PREFIX \
+            --with-liblzma=$PREFIX \
+            --with-spatialite=$PREFIX \
             --enable-debug \
             $PGFLAG
+
 
 make
 make install
