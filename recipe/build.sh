@@ -1,10 +1,10 @@
 #!/bin/bash
 
 if [ $(uname) == Darwin ]; then
-    export LDFLAGS="-headerpad_max_install_names"
-    OPTS="--with-xml2=$PREFIX"
+  export LDFLAGS="-headerpad_max_install_names"
+  OPTS="--enable-rpath"
 else
-    OPTS="--with-pg=$PREFIX/bin/pg_config"
+  OPTS="--with-pg=$PREFIX/bin/pg_config --with-xml2=$PREFIX"
 fi
 
 CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
@@ -26,7 +26,6 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-libjson-c=$PREFIX \
             --with-expat=$PREFIX \
             --with-freexl=$PREFIX \
-            --with-liblzma=$PREFIX \
             --with-spatialite=$PREFIX \
             --enable-debug \
             $PGFLAG

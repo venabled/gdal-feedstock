@@ -45,8 +45,8 @@ requirements:
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libxml2  # [not win]
-        - libspatialite  # [not win]
+        - xz  # [not win]
+        - libspatialite  # [linux]
     run:
         - python
         - numpy x.x
@@ -69,9 +69,8 @@ requirements:
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libxml2  # [not win]
-        - libspatialite  # [not win]
-
+        - xz  # [not win]
+        - libspatialite  # [linux]
 test:
     files:
         - os1_hw.py
