@@ -40,9 +40,11 @@ assert driver is not None, 'JPEG not available within GDAL'
 driver = ogr.GetDriverByName('GML')
 assert driver is not None, 'GML not available within GDAL'
 
-# Only available when openjpeg successfully linked in.
-driver = gdal.GetDriverByName('JP2OpenJPEG')
-assert driver is not None, 'JP2OpenJPEG not available within GDAL'
+import sys
+if not sys.version_info >= (3, 5):
+    # Only available when openjpeg successfully linked in.
+    driver = gdal.GetDriverByName('JP2OpenJPEG')
+    assert driver is not None, 'JP2OpenJPEG not available within GDAL'
 
 # Only available when curl successfully linked in.
 driver = gdal.GetDriverByName('WCS')
