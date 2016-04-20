@@ -4,10 +4,17 @@ if [ $(uname) == Darwin ]; then
   export LDFLAGS="-headerpad_max_install_names"
   OPTS="--enable-rpath"
 else
-  OPTS="--with-pg=$PREFIX/bin/pg_config --with-xml2=$PREFIX"
+  OPTS="--disable-rpath"
 fi
 
-CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
+export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
+export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
+
+# FIXME: Re-enable these once we have Python 3.5 and 3.4.
+if [ $CONDA_PY > 27 ]; then
+  OPTS="$OPT --with-libtiff=$PREFIX --with-xml2=$PREFIX --with-openjpeg=$PREFIX --with-spatialite=$PREFIX"
+fi
+
 ./configure --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
@@ -15,21 +22,17 @@ CPPFLAGS="-I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" \
             --with-netcdf=$PREFIX \
             --with-geos=$PREFIX/bin/geos-config \
             --with-static-proj4=$PREFIX \
-            --with-openjpeg=$PREFIX \
-            --with-jpeg=$PREFIX \
-            --with-libtiff=$PREFIX \
-            --with-png=$PREFIX \
             --with-libz=$PREFIX \
-            --disable-rpath \
+            --with-png=$PREFIX \
+            --with-jpeg=$PREFIX \
             --without-pam \
             --with-python \
             --with-libjson-c=$PREFIX \
             --with-expat=$PREFIX \
             --with-freexl=$PREFIX \
-            --with-spatialite=$PREFIX \
             --enable-debug \
-            $PGFLAG
-
+            --with-pg=$PREFIX/bin/pg_config \
+            $OPTS
 
 make
 make install
