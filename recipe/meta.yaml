@@ -25,6 +25,7 @@ requirements:
     build:
         - python
         - setuptools
+        - cmake  # [win]
         - numpy x.x
         - hdf4  # [not win]
         - hdf5 1.8.15.1
@@ -33,20 +34,19 @@ requirements:
         - xerces-c
         - libnetcdf 4.3*
         - krb5
-        - libpng
-        - openjpeg  # [not py35]
-        - libtiff 4.0.6  # [not py35]
+        - libpng 1.6*
+        - openjpeg  # [unix and py<34 or win]
+        - libtiff 4*  # [unix and py<34 or win]
         - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        # TODO: Test `postgresql` on OS X.
-        - postgresql  # [linux]
+        - zlib 1.2*  # [not win]
+        - postgresql  # [not win]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libspatialite  # [unix and py<35]
+        - libspatialite  # [unix and py<34]
     run:
         - python
         - numpy x.x
@@ -57,23 +57,20 @@ requirements:
         - xerces-c
         - libnetcdf 4.3*
         - krb5
-        - libpng
-        - openjpeg  # [not py35]
-        - libtiff 4.0.6  # [not py35]
+        - libpng 1.6*
+        - openjpeg  # [unix and py<34 or win]
+        - libtiff 4*  # [unix and py<34 or win]
         - jpeg 9*
         - curl
         - expat
-        - zlib  # [not win]
-        # TODO: Test `postgresql` on OS X.
-        - postgresql  # [linux]
+        - zlib 1.2*  # [not win]
+        - postgresql  # [not win]
         - jasper  # [not win]
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libspatialite  # [unix and py<35]
+        - libspatialite  # [unix and py<34]
 test:
-    requires:
-        - python {{ environ['PY_VER'] + '*' }}  # [win]
     files:
         - os1_hw.py
         - sites.dbf

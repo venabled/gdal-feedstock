@@ -4,14 +4,14 @@ if [ $(uname) == Darwin ]; then
   export LDFLAGS="-headerpad_max_install_names"
   OPTS="--enable-rpath"
 else
-  OPTS="--with-pg=$PREFIX/bin/pg_config --disable-rpath"
+  OPTS="--disable-rpath"
 fi
 
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 
-# FIXME: Re-enable these once we have Python 3.5.
-if [ $CONDA_PY != 35 ]; then
+# FIXME: Re-enable these once we have Python 3.5 and 3.4.
+if [ $CONDA_PY > 27 ]; then
   OPTS="$OPT --with-libtiff=$PREFIX --with-xml2=$PREFIX --with-openjpeg=$PREFIX --with-spatialite=$PREFIX"
 fi
 
@@ -31,6 +31,7 @@ fi
             --with-expat=$PREFIX \
             --with-freexl=$PREFIX \
             --enable-debug \
+            --with-pg=$PREFIX/bin/pg_config \
             $OPTS
 
 make
