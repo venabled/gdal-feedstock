@@ -35,8 +35,8 @@ requirements:
         - libnetcdf 4.3*
         - krb5
         - libpng 1.6*
-        - openjpeg  # [unix and py<34 or win]
-        - libtiff 4*  # [unix and py<34 or win]
+        - openjpeg
+        - libtiff 4.0.6
         - jpeg 9*
         - curl
         - expat
@@ -46,7 +46,7 @@ requirements:
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libspatialite  # [unix and py<34]
+        - libspatialite  # [not win]
     run:
         - python
         - numpy x.x
@@ -58,8 +58,8 @@ requirements:
         - libnetcdf 4.3*
         - krb5
         - libpng 1.6*
-        - openjpeg  # [unix and py<34 or win]
-        - libtiff 4*  # [unix and py<34 or win]
+        - openjpeg
+        - libtiff 4.0.6
         - jpeg 9*
         - curl
         - expat
@@ -69,7 +69,7 @@ requirements:
         - giflib  # [not win]
         - json-c  # [not win]
         - freexl  # [not win]
-        - libspatialite  # [unix and py<34]
+        - libspatialite  # [not win]
 test:
     files:
         - os1_hw.py

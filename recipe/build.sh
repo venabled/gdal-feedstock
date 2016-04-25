@@ -10,11 +10,6 @@ fi
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 
-# FIXME: Re-enable these once we have Python 3.5 and 3.4.
-if [ $CONDA_PY > 27 ]; then
-  OPTS="$OPT --with-libtiff=$PREFIX --with-xml2=$PREFIX --with-openjpeg=$PREFIX --with-spatialite=$PREFIX"
-fi
-
 ./configure --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
@@ -30,6 +25,10 @@ fi
             --with-libjson-c=$PREFIX \
             --with-expat=$PREFIX \
             --with-freexl=$PREFIX \
+            --with-libtiff=$PREFIX \
+            --with-xml2=$PREFIX \
+            --with-openjpeg=$PREFIX \
+            --with-spatialite=$PREFIX \
             --enable-debug \
             --with-pg=$PREFIX/bin/pg_config \
             $OPTS
