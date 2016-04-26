@@ -5,7 +5,7 @@ language: objective-c
 
 env:
   matrix:
-
+    
     - CONDA_NPY=110  CONDA_PY=27
     - CONDA_NPY=111  CONDA_PY=27
     - CONDA_NPY=110  CONDA_PY=34
@@ -33,7 +33,7 @@ install:
       conda update --yes conda
       conda install --yes conda-build=1.20.0 jinja2 anaconda-client
       conda config --add channels conda-forge
-
+      
 
 script:
   - conda build ./recipe
