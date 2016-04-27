@@ -10,6 +10,8 @@ fi
 export LDFLAGS="$LDFLAGS -L$PREFIX/lib"
 export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
 
+# `--without-pam` was removed.
+# See https://github.com/conda-forge/gdal-feedstock/pull/47 for the discussion.
 ./configure --prefix=$PREFIX \
             --with-hdf4=$PREFIX \
             --with-hdf5=$PREFIX \
