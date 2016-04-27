@@ -20,7 +20,6 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-libz=$PREFIX \
             --with-png=$PREFIX \
             --with-jpeg=$PREFIX \
-            --without-pam \
             --with-python \
             --with-libjson-c=$PREFIX \
             --with-expat=$PREFIX \
