@@ -12,6 +12,7 @@ source:
         - clang.patch  # [osx]
         - prepend-dll.patch  # [win]
         - MSC_VER_1900_snprintf.patch  # [win]
+        - windowshdf5.patch  # [win]
         - install_scripts.patch
 
 build:
