@@ -1,3 +1,6 @@
+import os
+import sys
+
 from osgeo import gdal
 from osgeo import ogr
 from osgeo import osr
@@ -7,7 +10,6 @@ import os1_hw
 
 # Set GDAL_DATA. This is done normally done by the activate script,
 # but this doesn't happen in the testing environment.
-import os
 if 'LIBRARY_PREFIX' in os.environ:
     # Windows.
     gdalData = os.path.join(os.environ['LIBRARY_PREFIX'], 'share', 'gdal')
@@ -56,8 +58,9 @@ driver = ogr.GetDriverByName('KML')
 assert driver is not None
 
 # Only available when SQLite successfully linked in.
-driver = ogr.GetDriverByName('SQLite')
-assert driver is not None
+if sys.platform != 'win32':
+    driver = ogr.GetDriverByName('SQLite')
+    assert driver is not None
 
 def has_geos():
     pnt1 = ogr.CreateGeometryFromWkt( 'POINT(10 20)' )

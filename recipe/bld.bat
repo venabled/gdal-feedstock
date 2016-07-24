@@ -67,10 +67,7 @@ set BLD_OPTS=%WIN64% ^
     FREEXL_LIBS=%LIBRARY_LIB%\freexl_i.lib ^
     EXPAT_DIR=%LIBRARY_PREFIX% ^
     EXPAT_INCLUDE="-I%LIBRARY_INC%" ^
-    EXPAT_LIB=%LIBRARY_LIB%\expat.lib ^
-    SQLITE_INC="-I%LIBRARY_INC% -DHAVE_SPATIALITE" ^
-    SQLITE_LIB="%LIBRARY_LIB%\sqlite3.lib %LIBRARY_LIB%\spatialite_i.lib" ^
-    SPATIALITE_412_OR_LATER=yes
+    EXPAT_LIB=%LIBRARY_LIB%\expat.lib
 
 nmake /f makefile.vc %BLD_OPTS%
 if errorlevel 1 exit 1
