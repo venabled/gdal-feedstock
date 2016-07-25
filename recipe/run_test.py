@@ -1,3 +1,6 @@
+import os
+import sys
+
 from osgeo import gdal
 from osgeo import ogr
 from osgeo import osr
@@ -7,7 +10,6 @@ import os1_hw
 
 # Set GDAL_DATA. This is done normally done by the activate script,
 # but this doesn't happen in the testing environment.
-import os
 if 'LIBRARY_PREFIX' in os.environ:
     # Windows.
     gdalData = os.path.join(os.environ['LIBRARY_PREFIX'], 'share', 'gdal')
@@ -20,33 +22,45 @@ os.environ['GDAL_DATA'] = gdalData
 driver = gdal.GetDriverByName('netCDF')
 assert driver is not None
 
-# FIXME: Commented out until HDF4 support for Windows available.
-#driver = gdal.GetDriverByName('HDF4')
-#assert driver is not None
+driver = gdal.GetDriverByName('HDF4')
+assert driver is not None
 
 driver = gdal.GetDriverByName('HDF5')
-assert driver is not None, 'HDF5 not available within GDAL'
+assert driver is not None
 
 driver = gdal.GetDriverByName('GTiff')
-assert driver is not None, 'GTiff not available within GDAL'
+assert driver is not None
 
 driver = gdal.GetDriverByName('PNG')
-assert driver is not None, 'PNG not available within GDAL'
+assert driver is not None
 
 driver = gdal.GetDriverByName('JPEG')
-assert driver is not None, 'JPEG not available within GDAL'
+assert driver is not None
 
 # Only available when xerces-c++ successfully linked in.
 driver = ogr.GetDriverByName('GML')
-assert driver is not None, 'GML not available within GDAL'
+assert driver is not None
 
 # Only available when openjpeg successfully linked in.
 driver = gdal.GetDriverByName('JP2OpenJPEG')
-assert driver is not None, 'JP2OpenJPEG not available within GDAL'
+assert driver is not None
 
 # Only available when curl successfully linked in.
 driver = gdal.GetDriverByName('WCS')
-assert driver is not None, 'WCS not available within GDAL'
+assert driver is not None
+
+# Only available when freexl successfully linked in.
+driver = ogr.GetDriverByName('XLS')
+assert driver is not None
+
+# Only available when expat successfully linked in.
+driver = ogr.GetDriverByName('KML')
+assert driver is not None
+
+# Only available when SQLite successfully linked in.
+if sys.platform != 'win32':
+    driver = ogr.GetDriverByName('SQLite')
+    assert driver is not None
 
 def has_geos():
     pnt1 = ogr.CreateGeometryFromWkt( 'POINT(10 20)' )

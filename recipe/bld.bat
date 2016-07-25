@@ -31,6 +31,9 @@ set BLD_OPTS=%WIN64% ^
     INCDIR=%LIBRARY_INC% ^
     DATADIR=%LIBRARY_PREFIX%\share\gdal ^
     HTMLDIR=%LIBRARY_PREFIX%\share\doc\gdal ^
+    HDF4_DIR=%LIBRARY_PREFIX% ^
+    HDF4_LIB="%LIBRARY_LIB%\hdf.lib %LIBRARY_LIB%\mfhdf.lib %LIBRARY_LIB%\xdr.lib" ^
+    HDF4_HAS_MAXOPENFILES=YES ^
     HDF5_LIB=%LIBRARY_LIB%\hdf5.lib ^
     HDF5_DIR=%LIBRARY_PREFIX% ^
     GEOS_DIR=%LIBRARY_PREFIX% ^
@@ -42,8 +45,6 @@ set BLD_OPTS=%WIN64% ^
     NETCDF_LIB=%LIBRARY_LIB%\netcdf.lib ^
     NETCDF_INC_DIR=%LIBRARY_INC% ^
     NETCDF_SETTING=yes ^
-    KEA_CFLAGS="-I%LIBRARY_INC%" ^
-    KEA_LIB=%LIBRARY_LIB%\libkea.lib ^
     TIFF_INC="-I%LIBRARY_INC%" ^
     TIFF_LIB=%LIBRARY_LIB%\libtiff_i.lib ^
     TIFF_OPTS=-DBIGTIFF_SUPPORT ^
@@ -61,9 +62,12 @@ set BLD_OPTS=%WIN64% ^
     OPENJPEG_LIB=%LIBRARY_LIB%\openjp2.lib ^
     OPENJPEG_VERSION=20100 ^
     CURL_INC="-I%LIBRARY_INC%" ^
-    CURL_LIB="%LIBRARY_LIB%\libcurl.lib wsock32.lib wldap32.lib winmm.lib"
-rem      HDF4_DIR=%LIBRARY_PREFIX% ^
-rem      HDF4_LIB="%LIBRARY_LIB%\hdf.lib %LIBRARY_LIB%\mfhdf.lib %LIBRARY_LIB%\xdr.lib" ^
+    CURL_LIB="%LIBRARY_LIB%\libcurl.lib wsock32.lib wldap32.lib winmm.lib" ^
+    FREEXL_CFLAGS="-I%LIBRARY_INC%" ^
+    FREEXL_LIBS=%LIBRARY_LIB%\freexl_i.lib ^
+    EXPAT_DIR=%LIBRARY_PREFIX% ^
+    EXPAT_INCLUDE="-I%LIBRARY_INC%" ^
+    EXPAT_LIB=%LIBRARY_LIB%\expat.lib
 
 nmake /f makefile.vc %BLD_OPTS%
 if errorlevel 1 exit 1
