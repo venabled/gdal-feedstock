@@ -19,3 +19,9 @@ gdalwarp -s_srs "+proj=latlong" -t_srs "$proj4" -of EHdr grid.asc grid.flt
 
 # Test ISIS3/USGS driver `SetNoDataValue()` issue.
 ! gdalinfo cropped.cub 2>&1 >/dev/null | grep "SetNoDataValue()"
+
+# From @akorosov. See https://github.com/conda-forge/gdal-feedstock/issues/83
+gdalinfo $RECIPE_DIR/test_data/stere.tif
+
+# Check shapefile read.
+ogrinfo $RECIPE_DIR/test_data/sites.shp

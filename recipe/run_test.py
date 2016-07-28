@@ -5,9 +5,6 @@ from osgeo import gdal
 from osgeo import ogr
 from osgeo import osr
 
-# This module does some tests.
-import os1_hw
-
 # Set GDAL_DATA. This is done normally done by the activate script,
 # but this doesn't happen in the testing environment.
 if 'LIBRARY_PREFIX' in os.environ:
@@ -76,9 +73,9 @@ assert has_geos(), 'GEOS not available within GDAL'
 
 def has_proj():
     sr1 = osr.SpatialReference()
-    sr1.ImportFromEPSG(4326) # lat, lon
+    sr1.ImportFromEPSG(4326) # lat, lon.
     sr2 = osr.SpatialReference()
-    sr2.ImportFromEPSG(28355) # GDA94 / MGA zone 55.
+    sr2.ImportFromEPSG(28355) # GDA94/MGA zone 55.
     osrex = osr.GetUseExceptions()
     osr.UseExceptions()
     hasproj = True
@@ -91,3 +88,6 @@ def has_proj():
     return hasproj
 
 assert has_proj(), 'PROJ not available within GDAL'
+
+# This module does some additional tests.
+import extra_tests
