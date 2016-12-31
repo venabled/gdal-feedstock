@@ -20,7 +20,7 @@ source:
 build:
   number: 5
   # Just a temporary skip to ensure CircleCI completion with the most common Python versions.
-  skip: True  # [py34 and linux]
+  skip: True  # [not (py34 and linux)]
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
