@@ -18,7 +18,7 @@ source:
         - MSC_VER_1900_snprintf.patch  # [win]
 
 build:
-    number: 2
+    number: 3
     features:
         - vc9  # [win and py27]
         - vc10  # [win and py34]
@@ -33,7 +33,7 @@ requirements:
         - hdf4  # [not win]
         - hdf5 1.8.17|1.8.17.*
         - geos 3.4.*
-        - proj.4 4.9.3
+        - proj4 4.9.3
         - xerces-c
         - libnetcdf 4.4.*
         - libdap4 3.18.*  # [not win]
@@ -56,7 +56,7 @@ requirements:
         - hdf4  # [not win]
         - hdf5 1.8.17|1.8.17.*
         - geos 3.4.*
-        - proj.4 4.9.3
+        - proj4 4.9.3
         - xerces-c
         - libnetcdf 4.4.*
         - libdap4 3.18.*  # [not win]
