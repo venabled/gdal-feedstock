@@ -62,7 +62,6 @@ requirements:
     - python
     - numpy x.x
     - hdf4
-    - hdf5 1.8.17|1.8.17.*
     - geos 3.5.1
     - hdf5 1.8.18|1.8.18.*
     - proj4 4.9.3
