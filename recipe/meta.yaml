@@ -20,7 +20,7 @@ source:
     - install_scripts.patch
 
 build:
-  number: 1
+  number: 2
   skip: True  # [py36 and linux]
   features:
     - vc9  # [win and py27]
@@ -34,8 +34,8 @@ requirements:
     - cmake  # [win]
     - numpy x.x
     - hdf4
+    - geos 3.5.1
     - hdf5 1.8.18|1.8.18.*
-    - geos 3.5.*
     - proj4 4.9.3
     - xerces-c
     - libnetcdf 4.4.*
@@ -62,8 +62,8 @@ requirements:
     - python
     - numpy x.x
     - hdf4
+    - geos 3.5.1
     - hdf5 1.8.18|1.8.18.*
-    - geos 3.5.*
     - proj4 4.9.3
     - xerces-c
     - libnetcdf 4.4.*
