@@ -22,8 +22,8 @@ error_handler() {
 trap 'error_handler' ERR
 
 # Set up a repeating loop to send some output to Travis.
-bash -c "while true; do echo \$(date) - building ...; sleep $PING_SLEEP; done" &
-PING_LOOP_PID=$!
+# ih -c "while true; do echo \$(date) - building ...; sleep $PING_SLEEP; done" &
+# NG_LOOP_PID=$!
 
 ## START BUILD
 # We could pin to conda-forge's `libxml2`, but this has the same effect and
@@ -60,7 +60,6 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-xerces=$PREFIX \
             --with-netcdf=$PREFIX \
             --with-geos=$PREFIX/bin/geos-config \
-            --with-kea=$PREFIX/bin/kea-config \
             --with-static-proj4=$PREFIX \
             --with-libz=$PREFIX \
             --with-png=$PREFIX \
@@ -76,6 +75,9 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-sqlite3=$PREFIX \
             --with-curl \
             --with-dods-root=$PREFIX \
+            --with-mrsid=/home/venabldt/Downloads/MrSID_DSDK-9.5.4.4703-rhel6.x86-64.gcc531/Raster_DSDK \
+            --with-mrsid_lidar=/home/venabldt/Downloads/MrSID_DSDK-9.5.4.4703-rhel6.x86-64.gcc531/Lidar_DSDK \
+            --without-kea \
             $OPTS
 
 # CircleCI offers two cores.
@@ -97,4 +99,4 @@ cp $RECIPE_DIR/scripts/deactivate.sh $DEACTIVATE_DIR/gdal-deactivate.sh
 dump_output
 
 # Nicely terminate the ping output loop.
-kill $PING_LOOP_PID
+# kill $PING_LOOP_PID
