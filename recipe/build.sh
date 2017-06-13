@@ -75,8 +75,8 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-sqlite3=$PREFIX \
             --with-curl \
             --with-dods-root=$PREFIX \
-            --with-mrsid=/home/venabldt/Downloads/MrSID_DSDK-9.5.4.4703-rhel6.x86-64.gcc531/Raster_DSDK \
-            --with-mrsid_lidar=/home/venabldt/Downloads/MrSID_DSDK-9.5.4.4703-rhel6.x86-64.gcc531/Lidar_DSDK \
+            --with-mrsid=$MRSID_SDK_ROOT/Raster_DSDK \
+            --with-mrsid_lidar=$MRSID_SDK_ROOT/Lidar_DSDK \
             --without-kea \
             $OPTS
 
