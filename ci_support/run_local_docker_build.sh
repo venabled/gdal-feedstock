@@ -9,8 +9,6 @@ FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 RECIPE_ROOT=$FEEDSTOCK_ROOT/recipe
 LOCAL_CONDA_REPO=$1
 
-echo $MRSID_SDK_LOCAL
-
 docker info
 
 config=$(cat <<CONDARC
@@ -40,14 +38,12 @@ fi
 
 rm -f "$FEEDSTOCK_ROOT/build_artefacts/conda-forge-build-done"
 
-export MRSID_SDK_ROOT="/mrsid"
 
 cat << EOF | docker run -i \
                         -v "${RECIPE_ROOT}":/recipe_root \
                         -v "${FEEDSTOCK_ROOT}":/feedstock_root \
                         -v "${LOCAL_CONDA_REPO}":/condarepo \
                         -e HOST_USER_ID="${HOST_USER_ID}" \
-                        -e MRSID_SDK_ROOT="/mrsid" \
                         condaforge/linux-anvil \
                         bash || exit 1
 
@@ -56,7 +52,6 @@ export PYTHONUNBUFFERED=1
 
 echo "$config" > ~/.condarc
 
-ls $MRSID_SDK_ROOT
 
 # A lock sometimes occurs with incomplete builds. The lock file is stored in build_artefacts.
 conda clean --lock
