@@ -7,7 +7,7 @@
 
 FEEDSTOCK_ROOT=$(cd "$(dirname "$0")/.."; pwd;)
 RECIPE_ROOT=$FEEDSTOCK_ROOT/recipe
-MRSID_SDK_LOCAL=$1
+LOCAL_CONDA_REPO=$1
 
 echo $MRSID_SDK_LOCAL
 
@@ -16,6 +16,7 @@ docker info
 config=$(cat <<CONDARC
 
 channels:
+ - /condarepo
  - conda-forge
  - defaults
 
@@ -44,7 +45,7 @@ export MRSID_SDK_ROOT="/mrsid"
 cat << EOF | docker run -i \
                         -v "${RECIPE_ROOT}":/recipe_root \
                         -v "${FEEDSTOCK_ROOT}":/feedstock_root \
-                        -v "${MRSID_SDK_LOCAL}":/mrsid \
+                        -v "${LOCAL_CONDA_REPO}":/condarepo \
                         -e HOST_USER_ID="${HOST_USER_ID}" \
                         -e MRSID_SDK_ROOT="/mrsid" \
                         condaforge/linux-anvil \
@@ -77,7 +78,7 @@ EOF
 # see https://github.com/conda-forge/conda-smithy/pull/337
 # for a possible fix
 
-cp /opt/conda/conda-bld/linux-64/* /mrsid/
+cp /opt/conda/conda-bld/linux-64/* /recipe_root
 
 set -x
 test -f "$FEEDSTOCK_ROOT/build_artefacts/conda-forge-build-done" || exit 1

@@ -75,8 +75,8 @@ export CPPFLAGS="$CPPFLAGS -I$PREFIX/include"
             --with-sqlite3=$PREFIX \
             --with-curl \
             --with-dods-root=$PREFIX \
-            --with-mrsid=/mrsid/Raster_DSDK \
-            --with-mrsid_lidar=/mrsid/Lidar_DSDK \
+            --with-mrsid=$PREFIX \
+            --with-mrsid_lidar=$PREFIX \
             $OPTS
 
 # CircleCI offers two cores.
